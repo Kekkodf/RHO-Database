@@ -1,0 +1,72 @@
+\begin{longtable}{|p{.20\columnwidth}|p{.20\columnwidth} |p{.30\columnwidth}|p{.25\columnwidth} |}
+\hline
+\textbf{Relationship} & \textbf{Description} & \textbf{Component Entities} & \textbf{Attributes} \\\hline
+
+
+Belongs & It associates a collected Sample with the Group to which it belongs. & \begin{itemize}
+        \vspace{-1em}
+        \item Group (1, N).
+        \item Sample (1, N).
+    \end{itemize}
+ &  --- \\\hline
+
+ Defines & It associates a Research Team, the Clinical Study in which its members are involved, and the Research Procedure followed to perform it. & \begin{itemize}
+        \vspace{-1em}
+        \item Clinical Study (1, N).
+        \item Research Procedure (0, N).
+        \item Research Team (1, N).
+    \end{itemize}
+ &  --- \\\hline
+
+ Gathers & It associates a biochemical Sample with the Medical Appointment, during which it could be collected from the patient for further analyses. & \begin{itemize}
+        \vspace{-1em}
+        \item Medical Appointment (0, N).
+        \item Sample (1, 1).
+    \end{itemize}
+ &  --- \\\hline
+
+ Gives & It associates the Patient with the Consent she/he could give for her/his data to be used in the relevant Clinical Study. & \begin{itemize}
+        \vspace{-1em}
+        \item Clinical Study (1, N)
+        \item Consent (1, 1).
+        \item Patient (0, N).
+    \end{itemize}
+ &  --- \\\hline
+
+ Performs & It associates a Doctor with a Patient and the Medical Appointment that can be performed on her/him. & \begin{itemize}
+        \vspace{-1em}
+        \item Doctor (0, 1).
+        \item Medical Appointment (1, 1).
+        \item Patient (1, N).
+    \end{itemize}
+ &  --- \\\hline
+
+ Produces & It associates a Clinical Study with the Results obtained from its procedures and analyses. & \begin{itemize}
+        \vspace{-1em}
+        \item Clinical Study (1, 1).
+        \item Results (1, 1).
+    \end{itemize}
+ &  --- \\\hline
+
+ Stores & It associates a collected Sample with the physical Location where it is stored. & \begin{itemize}
+        \vspace{-1em}
+        \item Location (0, N).
+        \item Sample (1, 1).
+    \end{itemize}
+ &  --- \\\hline
+
+ Undergoes & It associates a Group of samples with the Clinical Study in which they will be analyzed. & \begin{itemize}
+        \vspace{-1em}
+        \item Clinical Study (0, N).
+        \item Group (1, N).
+    \end{itemize}
+ &  --- \\\hline
+
+ Works-in & It associates the Research Personnel members with the Research Team in which they participate. & \begin{itemize}
+        \vspace{-1em}
+        \item Research Personnel (0, N).
+        \item Research Team (1, N).
+    \end{itemize}
+ &  --- \\\hline
+
+\end{longtable}

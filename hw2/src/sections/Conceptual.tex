@@ -1,0 +1,137 @@
+\section{Conceptual Design}
+
+\subsection{Variations to the Requirement Analysis}
+We modified the HW1 \lq\lq Requirement Analysis\rq\rq\ according to the feedback given during the evaluation. Specifically, we add to the \lq\lq Non-Functional Requirements\rq\rq\ section the privacy aspects that must be preserved while dealing with medical information.
+
+\subsection{Entity-Relationship Schema}
+Figure 1 shows the entity-relationship schema.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width = 0.64\textwidth]{src/schemas/er_schema.png}
+    \caption{Entity-Relationship Schema.}
+\end{figure}
+
+\subsection{Data Dictionary}
+
+\subsubsection{Entities Table}
+\input{tables/entities}
+
+
+\subsubsection{Relationships Table}
+\input{tables/relationships}
+
+\subsection{External Constraints}
+\begin{itemize}
+    \item Each research team must comprise at least one clinical engineer and one data scientist from the research personnel.\\
+    Moreover, the attribute 'Number of Members' of the 'Research Team' entity must be updated each time a new member gets added or removed from the group.
+    \item A medical appointment can produce a sample only before having the consent form from the patient.
+    \item The attribute 'Number of Samples' of the 'Group' entity must be updated each time a new sample gets added or removed from the group.
+    \item A clinical study can be carried out insofar as it stays between the boundaries provided by the "Comitato Etico Unico Regionale" (CEUR) and not for other scopes.
+\end{itemize}
+
+\subsection{Functional Requirements Satisfaction Check}
+Considering the Functional Requirements from HW1 and intending to improve the clarity of this section, we divide the data that the database must store into four categories of data, namely \textbf{Organizational}, \textbf{Patient}, \textbf{Personnel}, and \textbf{Research}.
+\begin{itemize} 
+
+    \item \textbf{Organizational} data, i.e., data related to the logistics aspects at the RHO Institute.
+
+    Group of sample data, including:
+    \begin{itemize}
+        \item The kind of Samples in the group.
+        \item The study Group ID.
+    \end{itemize}
+    Location of samples storing data, including:
+    \begin{itemize}
+        \item The capacity of the storing device.
+        \item The storing device.
+        \item The room where the sample is stored.
+    \end{itemize}
+    Medical appointment data, including:
+    \begin{itemize}
+        \item The date the medical appointment is performed.
+    \end{itemize}
+    Sample data, including:
+    \begin{itemize}
+        \item Biological data concerning the typology of the sample.
+        \item The availability of the sample.
+    \end{itemize}   
+    Such information is stored in the \emph{Group}, \emph{Location}, \emph{Medical Appointment}, and \emph{Sample} entities, respectively. On the one hand, the \emph{Gathers} relationship defines the association between the medical appointment in which a sample is collected; on the other hand, the \emph{Stores} relationship keeps the information concerning where the samples are held. The relationship \emph{Belongs} defines the information about which sample is part of one or more Sample Groups.
+
+    \item \textbf{Patient} data, i.e., data from individuals who arrive at the RHO Institute. 
+
+    Consent data, including:
+    \begin{itemize}
+        \item Consensus status.
+        \item Duration.
+        \item Purpose.
+    \end{itemize}
+    Patient data, including:
+    \begin{itemize}
+        \item Clinical history.
+        \item Date of birth.
+        \item Fiscal code.
+        \item Height.
+        \item Name.
+        \item Sex.
+        \item Status.
+        \item Surname.
+        \item Weight.
+    \end{itemize}
+    Such information is stored in the \emph{Consent} and \emph{Patient} entities, respectively. The relationship \emph{Gives} links the consent to each patient and the respective Clinical Study.
+    
+    \item \textbf{Personnel} data, i.e., data connected to the individuals that work in the RHO Institute.
+
+    Doctors data:
+    \begin{itemize}
+        \item Contact info (E-mail and phone number).
+        \item Name.
+        \item Surname.
+        \item Hashed password for login.
+    \end{itemize}
+    Research personnel data:
+    \begin{itemize}
+        \item Contact info (E-mail and phone number).
+        \item Name.
+        \item Surname.
+        \item Role.
+        \item Hashed password for login.
+    \end{itemize}
+    Such information is stored in the \emph{Doctor} and \emph{Research Personnel} entities. In this case, there is a need for a distinction in the roles of the RHO employees since the Research personnel does not perform medical appointments or enroll patients in the systems, while the doctors do not define research procedures or create research teams. The relationship \emph{Performs} defines which medical appointment is related to which doctor.
+
+    \item \textbf{Research} data, i.e., data related to the Oncological research aspects carried out in the RHO Institute.
+
+    Clinical studies data:
+    \begin{itemize}
+        \item Description of the Oncological Research Study performed.
+        \item The period of time on which the Clinical Study is performed.
+    \end{itemize}
+    Research procedures data:
+    \begin{itemize}
+        \item Name of the procedure adopted.
+        \item Need for anonymization of the sensitive information used in the clinical study.
+        \item Description and direction of the Research Pipeline.
+    \end{itemize}
+    Research team data:
+    \begin{itemize}
+        \item Creator of the Team.
+        \item Name of the Team.
+        \item Number of members in the Team.
+    \end{itemize}
+    Results data:
+    \begin{itemize}
+        \item Model statistics after the experiments.
+        \item Number of mutations computed.
+        \item Value of genomics instability obtained.
+    \end{itemize}
+    Such information is stored in \emph{Clinical Study}, \emph{Research Procedure}, \emph{Research Team}, and \emph{Results} entities, respectively. The relationship \emph{Works-in} defines the relations between the individual research employee and the Research team in which he/she works. Moreover, the relationship \emph{Produces} stores the information between the experiments and the results, i.e., the Clinical Studies and the results.
+\end{itemize}
+
+Moreover, the system must allow: 
+\begin{itemize}
+    \item \textbf{Doctors, Clinical Engineers, and Data Scientists to log in and sign up, managing different user roles for them.} The information is stored in the entities \emph{Doctor} and \emph{Research personnel} and the relationships \emph{Perform} and \emph{Works-in} allow the system to differentiate between the different roles.
+    \item \textbf{Doctors to register and update patients' personal and medical information and perform medical appointments for each patient.} The information is stored in the entities \emph{Medical Appointment} and \emph{Patient}. The relationship \emph{Performs} allows the system to keep track of the information of the medical appointment performed on the patient.
+    \item \textbf{Clinical Engineers to label and store samples.} The data is stored in the \emph{Location} and \emph{Sample} entities. The information is defined in the relationship \emph{Stores}.
+    \item \textbf{Clinical Engineers perform clinical studies for each sample and update their biochemical data.} The information is available in the \emph{Results} produced by different Clinical Studies, via the relationship \emph{Produces}.
+    \item \textbf{Data Scientist to access the biochemical and clinical data of the samples, updating statistical studies.} The data is stored in entity \emph{Results}, where the statistical information of the Clinical study is reported.
+    \item \textbf{Researchers (Clinical Engineers and Data Scientists) to create/join a Research Team.} The relationship \emph{Works-in} allows the system to organize the distribution of the research teams. The data is stored in the \emph{Research Team} entity.
+\end{itemize}

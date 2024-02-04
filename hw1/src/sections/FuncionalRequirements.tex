@@ -1,0 +1,109 @@
+\section{Functional Requirements}
+%Describe in a very precise and schematic way (bullet lists):
+%Type of information stored
+%Operations that different users can execute on such data
+The database must store:
+\begin{itemize}
+
+    \item \textbf{Biochemical Analysis} data including:
+    \begin{itemize}
+        \item Operation performed by Clinical Engineers.
+        \item List of samples used.
+        \item Results.
+    \end{itemize}
+    
+    \item \textbf{Clinical Engineers} data, including:
+    \begin{itemize}
+        \item Name and surname.
+        \item E-mail.
+        \item Phone number.
+        \item ID (badge number).
+        \item Its role in the hospital. 
+        \item Its research group name.
+    \end{itemize}
+    
+    \item \textbf{Clinical Study} data, including:
+    \begin{itemize}
+        \item CSID.
+        \item Brief description of the study.
+        \item Research team that defined the clinical study.
+    \end{itemize}
+    
+    \item \textbf{Data Scientists} data, including:
+    \begin{itemize}
+        \item Name and surname.
+        \item E-mail.
+        \item Phone number.
+        \item ID (badge number).
+        \item Its role in the hospital.  
+        \item Its research group name.
+    \end{itemize}
+
+    \item \textbf{Doctors} data, including:
+    \begin{itemize}
+        \item Name and surname.
+        \item E-mail.
+        \item Phone number.
+        \item ID (badge number).
+        \item Its role in the hospital.        
+    \end{itemize}
+    
+    \item \textbf{Medical Appointment} data, including:
+    \begin{itemize}
+        \item Type of service provided (MAID).
+        \item If samples were collected or not.
+        \item The doctor performed the medical examination.
+        \item The patient that undergoes the medical appointment.
+    \end{itemize}
+    
+    \item \textbf{Patients} data, including:
+    \begin{itemize}
+        \item Name and surname.
+        \item Date of birth.
+        \item Sex.
+        \item Fiscal code.  
+        \item Height.  
+        \item Weight.  
+        \item Clinical history.
+        \item Date of the visits. 
+        \item Diagnosis.
+        \item Progression of the illness.  
+        \item State of the illness.
+        \item State of the patient.
+        \item Proposed treatment. 
+    \end{itemize}
+
+    \item \textbf{Research Team} data, including:
+    \begin{itemize}
+        \item Name of the group.
+        \item Clinical studies of the team.
+        \item Clinical Engineers that belong to the group.
+        \item Data Scientists that belong to the group.
+    \end{itemize}
+
+    \item \textbf{Samples} data, including: 
+    \begin{itemize}
+        \item UIGID.
+        \item Biochemical data.
+        \item Storing location.
+        \item Availability status. 
+    \end{itemize}
+
+    \item \textbf{Statistical Analysis} data, including:
+    \begin{itemize}
+        \item Methods used by Data Scientists.
+        \item Data used.
+        \item Results.
+    \end{itemize}
+    
+\end{itemize}
+The system must allow:
+\begin{itemize}
+    \item Doctors, Clinical Engineers, and Data Scientists to log in and sign up, managing different user roles for them.
+    \item Doctors to register and update patients' personal and medical information.
+    \item Doctor to perform medical appointments for each patient.
+    \item Clinical Engineers to label and store samples.
+    \item Clinical Engineers perform clinical studies for each sample and update their biochemical data.
+    \item Data Scientist to access the biochemical and clinical data of the samples, updating statistical studies.
+    \item Researchers (Clinical Engineers and Data Scientists) to create/join a Research Team.
+\end{itemize}

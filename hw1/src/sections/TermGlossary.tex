@@ -1,0 +1,53 @@
+\section{Term Glossary}
+
+%\begin{table}[!ht]
+%    \centering
+%    \begin{tabular}{c|c}
+%         &  \\
+%         & 
+%    \end{tabular}
+%    \caption{Caption}
+%    \label{tab:my_label}
+%\end{table}
+
+
+
+%\begin{longtblr}[
+%  caption = {Long Title},
+%  label = {tab:test},
+%]{
+%  colspec = {|XX[4]|},
+%  rowhead = 1,
+%  hlines,
+%  row{even} = {gray9},
+%  row{1} = {olive9},
+%} 
+%
+%\end{longtblr}
+
+\begin{longtable}{|p{.20\columnwidth}|p{.30\columnwidth} |p{.20\columnwidth}|p{.20\columnwidth}|} 
+\hline
+\textbf{Term} & \textbf{Description} & \textbf{Synonyms} & \textbf{Connection} \\\hline
+Biochemical Analysis & Analysis performed by one or more Clinical Engineers on a Sample for gathering different results to be processed in a Statistical Analysis. & Biochemical/Chemical Experiments & Clinical Engineer, Clinical Study, Sample, Statistical Analysis \\\hline
+
+Clinical Engineer & Scientist who enrolls, manages the logistics, and chemically processes the samples of the patients. & Clinical scientist, clinical researcher & Clinical Study, Sample\\\hline
+
+Clinical Study & Biochemical and statistical analysis performed by Clinical Engineers and Data Scientists. & & Clinical Engineer, Data Scientist, Research Team, Sample\\\hline
+
+Data Scientist & Researcher that performs Statistical Analysis on the clinical results produced by the Clinical Engineer in a Clinical Study. & Statistician & Clinical Study, Sample\\\hline
+
+Doctor & Medical doctor who takes care of treating patients and enrolls a Patient in the system. & & Medical Appointment, Patient, Sample\\\hline
+
+Medical Appointment & Medical service that a Doctor provides to a Patient to enroll her/his information, update general information about her/him, and (if needed) propose a treatment plan, collecting at the same time a biological Sample for further analyses. & Medical consultation, medical visit, medical examination & Doctor, Patient, Sample\\\hline
+
+Patient & Person who come to the hospital to have their pathology treated by undergoing a medical examination. & & Doctor, Medical Appointment, Sample\\\hline
+
+Research Team & Group of researchers that perform a Clinical Study. & Research Group & Clinical Engineers, Data Scientist, Clinical Study\\\hline
+
+Sample & A sample of biochemical material, collected by the Doctor during a Medical Appointment and then analyzed in Clinical Studies. &  & Clinical Engineer, Clinical Study, Doctor, Medical Appointment, Patient\\\hline
+
+Statistical Analysis & Analysis performed on the results of Biochemical Analysis by Data Scientists in the context of a Clinical Study. & Numerical Experiments& Biochemical Analysis, Data Scientist\\\hline
+
+\caption{Term Glossary table.}
+\label{tab:termGlossary}
+\end{longtable}

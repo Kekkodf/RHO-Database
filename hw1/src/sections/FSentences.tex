@@ -1,0 +1,70 @@
+\section{Filtered Sentences}
+%Organize, in a schematic way, the information that can be extracted from the Natural Language Sentences
+\textbf{Biochemical Analysis}, chemical analysis conducted by Clinical Engineers:
+\begin{itemize}
+    \item Each Biochemical Analysis is defined by the set of analyses conducted by Clinical Engineers.
+    \item Each Biochemical Analysis must be accessible by the Data Scientist for their Statistical Analysis.
+    \item Each Biochemical Analysis reports the chemical results obtained by the Clinical Engineers.
+\end{itemize}
+\textbf{Clinical Engineer}, a member of the hospital personnel involved in Clinical Studies; unlike Doctors, she/he does not have direct contact with the Patients as she/he does not perform Medical Appointments:
+\begin{itemize}
+    \item Each Clinical Engineer is defined by her/his name, surname, e-mail address, phone number, badge number, role in the hospital, and Research Group.
+    \item Each Clinical Engineer can log in with a badge number and password.
+    \item Each Clinical Engineer is responsible for labeling and storing the Samples.
+    \item Each Clinical Engineer can define one or more Clinical Studies.
+    \item Each Clinical Engineer can belong to one or more Research Teams for the Clinical Studies.
+    \item Each Clinical Engineer must update the biochemical data of the Sample after each Biochemical Analysis of the Samples.
+\end{itemize}
+\textbf{Clinical Study}, procedure carried out by the Clinical Engineers and Data Scientist, by which the biochemical data of the Samples are categorized, registered, and Statistical Analysis is performed:
+\begin{itemize}
+    \item Each Clinical Study is defined by the particular type of study done, which can be specified with a Clinical Study ID (CSID) and a brief description.
+    \item Each Clinical Study regards a set of Samples and respective Patients and is carried out by a team of Clinical Engineers and Data Scientists.
+    \item Each Clinical Study is created by a Research Group.
+\end{itemize}
+\textbf{Data Scientist}, a member of the hospital personnel involved with processing Patients' biochemical results and clinical data for statistical studies; unlike Doctors and Clinical Engineers, she/he does not have direct contact with Patients or perform Biochemical Analysis:
+\begin{itemize}
+    \item Each Data Scientist is defined by her/his name, surname, e-mail address, phone number, badge number, role in the hospital, and Research Group.
+    \item Each Data Scientist can log in with a badge number and password.
+    \item Each Data Scientist has access to the system for the biochemical results of the Samples obtained from the Biochemical Analysis and general information of Patients to carry out Statistical Studies.
+    \item Each Data Scientist can belong to one or more Research Teams for Clinical Studies.
+\end{itemize}
+\textbf{Doctor}, a member of the personnel of the hospital that has direct contact with the Patients and is responsible for them, performing Medical Appointments; unlike Clinical Engineers, she/he is not involved directly in Clinical Studies:
+\begin{itemize}
+    \item Each Doctor is defined by her/his name, surname, e-mail address, phone number, badge number, and role in the hospital.
+    \item Each Doctor can log in with a badge number and password.
+    \item Each Doctor is responsible for registering the Patients' personal and medical information concurrently with the first visit.
+    \item Each Doctor can perform one or more Medical Appointments for each Patient.
+    \item Each Doctor for each Medical Appointment must update the Patient's medical information.
+\end{itemize}
+\textbf{Medical Appointment}, the medical practice, which can consist of either simple visit or surgery:
+\begin{itemize}
+    \item The type of service defines each Doctor's Medical Appointment, e.g., introductory visit, routine checkup, visit for collecting Samples, surgery, specifiable with a unique Medical Appointment ID (MAID).
+    \item Each Medical Appointment must comport the Patient's clinical data update.
+    \item Each Medical Appointment could result in the collection of a Sample used for a Clinical Study.
+\end{itemize}
+\textbf{Patient}, a person who is admitted to the hospital and has given her/his consent to be visited and for her/his personal and clinical data to be processed.
+\begin{itemize}
+    \item Each Patient is defined by her/his name, surname, date of birth, sex, fiscal code, height, weight, clinical history, date of the visit (or list of the dates if there have been other Medical Appointments), the diagnosis (enrolled using the standard ICD-O), state of the Patient (sick or healthy), and the proposed treatment if needed.
+    \item Each Patient can be subject to one or more Medical Appointments.
+    \item Each Patient gives consent for the data to be processed.
+    \item Each Patient releases one or more biological Samples.
+\end{itemize}
+\textbf{Research Team}, group of Clinical Engineers and Data Scientists that performs a Clinical Study:
+\begin{itemize}
+    \item Each Research Team is associated with one Clinical Study.
+    \item Each Research Team comprises at least two researchers, one of which must be a Clinical Engineer and the other is a Data Scientist.
+\end{itemize}
+\textbf{Sample}, the blood, tissue, or genome sequence sample collected by the Doctor during a Medical Appointment and object of the Clinical Study by the Clinical Engineer:
+\begin{itemize}
+    \item Each Sample is defined by a Unique Incrementally Generated ID (UIGID), its biochemical data, and the location where it is currently stored.
+    \item Each Sample undergoes one or more Clinical Studies by the Clinical Engineer, where its biochemical data are categorized and registered.
+    \item Each Sample's biochemical features are defined by the Research Team depending on the Clinical Study.
+    \item Each Sample must be registered in one refrigerator or box.
+    \item Each Sample must be available or unavailable.
+\end{itemize}
+\textbf{Statistical Analysis}, analysis and results collected by the Data Scientist:
+\begin{itemize}
+    \item Each Statistical Analysis is defined by the set of Samples on which the operations are conducted.
+    \item Each Statistical Analysis is accessible by the Research Team of the Clinical Study.
+    \item Each Statistical Analysis reports the results obtained by the Data Scientist.
+\end{itemize}

@@ -1,0 +1,15 @@
+\section{Principal Queries}
+\textcolor{red}{[Write some of the queries to be performed to satisfy your functional requirements. 3-4 queries are enough, try to use the techniques seen at lecture (aggregate functions, group by, subqueries,…)]}
+
+
+\begin{lstlisting}[language=SQL,
+keywordstyle=\color{blue},
+stringstyle=\color{mauve},
+showstringspaces=false,
+basicstyle=\ttfamily\footnotesize]
+SELECT t1.attr1
+FROM table1 as t1
+    LEFT JOIN table2 as t2 ON t1.attr2=t2.attr1 
+WHERE t1.attr3=1
+\end{lstlisting}
+

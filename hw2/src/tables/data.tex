@@ -1,0 +1,392 @@
+\begin{longtable}{|p{.20\columnwidth}|p{.15\columnwidth} |p{.30\columnwidth}|p{.10\columnwidth}|p{.20\columnwidth} |} 
+\hline
+\textbf{Relation} & \textbf{Attribute} & \textbf{Description} & \textbf{Domain} & \textbf{Constraints} \\\hline
+
+\multirow{2}{*}{Belongs}
+% Sample / Group
+	& UIGID
+		& Unique identifier of the Sample. 
+		& Serial
+		& Foreign key to Sample, Not NULL, primary key with Study Group ID
+\\\cline{2-5}
+	& StudyGroupID
+		& Unique identifier of the Group to which the Sample belongs.
+		& Text
+		& Foreign key to Group, Not NULL, primary key with UIGID
+\\\hline
+
+\multirow{3}{*}{Clinical Study} 
+&CSID 
+    &Unique identifier of the Clinical Study. 
+    &Text  
+    &Primary key
+\\\cline{2-5}
+&Date 
+    &When the Clinical Study has been performed.
+    &Date range 
+    &Not NULL
+\\\cline{2-5}
+&Description 
+    &The description of the study’s objectives and main features. 
+    &Text 
+    &
+\\\hline
+
+\multirow{3}{*}{Consent} 
+&ConsentStatus 
+    &It identifies whether the Patient gave or not the Consent for her/his data to be processed.
+    &Boolean
+    &Not NULL
+\\\cline{2-5}
+&Purpose 
+    &Why the Patient is asked for Consent.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Duration 
+    &Period of time for which the Consent is maintained.
+    &Date range
+    &Not NULL
+    \\\cline{2-5}
+&PatientID 
+    &ID of the patient giving the consent.
+    &Serial
+    &Foreign Key to Patient, Not NULL, primary key with CSID
+\\\cline{2-5}
+&CSID 
+    &ID of the clinical study requiring the consent.
+    &Text
+    &Foreign Key to Clinical Study, Not NULL, primary key with PatientID
+\\\hline
+
+\multirow{3}{*}{Defines}
+% Research Team / Clinical Study / Research Procedure
+	& TeamName 
+		& Unique identifier of the Research Team, carrying out the Clinical Study. 
+		& Text
+		& Foreign key to Research Team, Not NULL, primary key with CSID and Research ID
+\\\cline{2-5}
+	& CSID 
+		& Unique identifier of the Clinical Study. 
+		& Text
+		& Foreign key to Clinical Study, Not NULL, primary key with Name and Research ID
+\\\cline{2-5}
+	& ResearchID 
+		& Unique identifier of the Research Procedure chosen for the Clinical Study. 
+		& Text
+		& Foreign key to Research Procedure, Not NULL, primary key with Name and CSID
+\\\hline
+
+\multirow{6}{*}{Doctor} 
+&ID 
+    &Unique identifier of the Doctor.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Name
+    &The name of the Doctor
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Surname 
+    &The surname of the Doctor.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Email 
+    &The e-mail address of the Doctor.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Password 
+    &The log-in hashed password of the Doctor.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&PhoneNumber 
+    &The phone number of the Doctor.
+    &Text
+    &Not NULL
+\\\hline
+
+\multirow{2}{*}{Group} 
+&StudyGroupID 
+    &Unique identifier of the Group to which the Sample belongs.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&KindOfSamples 
+    &The type of Sample collected.
+    &Text
+    &Not NULL
+\\\hline
+
+\multirow{4}{*}{Location} 
+&StorageID
+    &Unique identifier of the Location of the Sample.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Room
+    &The room where the Sample is stored.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Capacity 
+    &The number of Sample each Location can contain.
+    &Integer
+    &Not NULL
+\\\cline{2-5}
+&Kind 
+    &The type of sample storage Location.
+    &Text
+    &Not NULL
+\\\hline
+
+\multirow{2}{*}{Medical Appointment} 
+&MAID 
+    &Unique identifier of the Medical Appointment.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Date
+    &The date when the Medical Appointment has been performed.
+    &Date range
+    &Not NULL
+\\\hline
+
+\multirow{10}{*}{Patient} 
+&PatientID 
+    &Unique identifier of the Patient.
+    &Serial
+    &Primary key
+\\\cline{2-5}
+&Name 
+    &The name of the Patient.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Surname 
+    &The surname of the Patient.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&DateOfBirth 
+    &The date of birth of the Patient.
+    &Date range
+    &Not NULL
+\\\cline{2-5}
+&FiscalCode
+    &The fiscal code of the Patient.
+    &Text
+    &
+\\\cline{2-5}
+&Height 
+    &The height of the Patient.
+    &Integer
+    &Not NULL
+\\\cline{2-5}
+&Weight 
+    &The weight of the Patient.
+    &Integer
+    &Not NULL
+\\\cline{2-5}
+&Sex 
+    &The sex of the Patient.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Status 
+    &Identifies if the Patient is sick or healthy.
+    &Boolean
+    &Not NULL
+\\\cline{2-5}
+&ClinicalHistory 
+    &Description of the Patient's clinical history.
+    &Text
+    &
+\\\cline{2-5}
+&ConsentStatus 
+    &It identifies whether the Patient gave or not the Consent for her/his data to be processed.
+    &Boolean
+    &Foreign key to Consent
+\\\hline
+\newpage
+\hline
+\multirow{3}{*}{Performs}
+% Doctor / Medical Appointment / Patient
+	& DoctorID 
+		& Unique identifier of the Doctor performing the Medical Appointment. 
+		& Text
+		& Foreign key to Doctor, Not NULL, primary key with MAID and PatientID
+\\\cline{2-5}
+	& MAID 	
+		& Unique identifier of the Medical Appointment. 
+		& Text
+		& Foreign key to Medical Appointment, Not NULL, primary key with ID and Patient ID
+\\\cline{2-5}
+    & PatientID 
+    		& Unique identifier of the Patient. 
+    		& Serial
+    		& Foreign key to Patient, Not NULL, primary key with DoctorID and MAID
+\\\hline
+
+\multirow{7}{*}{Research Personnel} 
+&ID 
+    &Unique identifier of the Research Personnel member.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Name 
+    &The name of the Research Personnel member.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Surname
+    &The surname of the Research Personnel member.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Email
+    &The e-mail of the Research Personnel member.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Password 
+    &The log-in hashed password of the Research Personnel member.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&PhoneNumber
+    &The phone number of the Research Personnel member.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Role
+    &Identifies whether the Research Personnel member is a Clinical Engineer or a Data Scientist
+    &Boolean
+    & Not NULL
+\\\hline
+
+\multirow{4}{*}{Research Procedure} 
+&ResearchID 
+    &Unique identifier of the Research Procedure.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Name
+    &Identifies the adopted procedure.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&Description 
+    &Description of objectives and main features of the adopted Research Procedure
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&NeedFor Anonymization 
+    &Identifies whether the adopted Research Procedure has to be anonymized or not.
+    &Boolean
+    &Not NULL
+\\\hline
+
+\multirow{2}{*}{Research Team} 
+&Name 
+    &Unique identifier of the Research Team.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&NumberOf Members 
+    &The number of members of the Research Team.
+    &Integer
+    &Not NULL
+\\\hline
+
+\newpage
+\hline
+\multirow{5}{*}{Results} 
+&ICDOCode 
+    &Unique identifier of the Results.
+    &Text
+    &Primary key
+\\\cline{2-5}
+&Mutation 
+    &Number of mutation of the Sample.
+    &Integer
+    &Not NULL
+\\\cline{2-5}
+&PutativeCopy NumberAlterations
+    &Measures the genomics instability.
+    &Float
+    &Not NULL
+\\\cline{2-5}
+&ModelAccuracy 
+    &Value of the accuracy metric that describes the performance of the statistical model used.
+    &Float
+    &
+\\\cline{2-5}
+&ModelLoss 
+    &Value of the loss metric of the statistical model used.
+    &Float
+    &
+\\\cline{2-5}
+& CSID 
+    & Unique identifier of the Clinical Study.
+    & Text 
+    & Foreign key to Clinical Study, Not NULL, primary key with ICD-O Code.
+\\\hline
+
+\multirow{3}{*}{Sample} 
+&UIGID 
+    &Unique identifier of the Sample.
+    &Serial
+    &Primary key
+\\\cline{2-5}
+&Type
+    &The type of the Sample.
+    &Text
+    &Not NULL
+\\\cline{2-5}
+&AvailabilityStatus 
+    &Identifies whether the Sample is available or not.
+    &Boolean
+    &Not NULL
+\\\cline{2-5}
+&MAID 
+    &Unique identifier of the Medical Appointment. 
+    &Text
+    &Foreign key to Medical Appointment
+\\\cline{2-5}
+&StorageID 
+    &Unique identifier of the Location of the Sample.
+    &Int
+    &Foreign key to Location
+\\\hline
+
+\multirow{2}{*}{Undergoes}
+% Group / Clinical study 
+	& StudyGroupID
+		& Unique identifier of the Group which undergoes the Clinical Study.
+		& Text
+		& Foreign key to Group, Not NULL, primary key with CSID
+\\\cline{2-5}
+	& CSID 
+		& Unique identifier of the Clinical Study. 
+		& Text
+		& Foreign key to Clinical Study, Not NULL, primary key with Study Group ID
+\\\hline
+
+\multirow{2}{*}{Works-in}
+% Research Personnel / Research Team
+	& ResID 
+		& Unique identifier of the Research Personnel member who works in the Research Team. 
+		& Text
+		& Foreign key to Research Personnel, Not NULL, primary key with TeamName
+\\\cline{2-5}
+	& TeamName 
+		& Unique identifier of the Research Team. 
+		& Text
+		& Foreign key to Research Team, Not NULL, primary key with ResID
+\\\hline
+
+\end{longtable}

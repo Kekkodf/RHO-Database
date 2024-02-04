@@ -1,0 +1,129 @@
+\begin{longtable}{|p{.20\columnwidth}|p{.20\columnwidth} |p{.30\columnwidth}|p{.25\columnwidth} |} 
+\hline
+\textbf{Entity} & \textbf{Description} & \textbf{Attributes} & \textbf{Identifier}  \\\hline
+
+
+Clinical Study & Research study performed on samples, conducted by RHO’s Research Team (Data Scientists and Clinical Engineers). & \begin{itemize}
+        \vspace{-1em}
+        \item CSID (Clinical Study ID): identifier of the Clinical Study. (text)
+        \item Date: the date on which the Clinical Study has been performed. (date range)
+        \item Description: a brief explanation of the study's objectives and main features. (text)
+        \end{itemize}
+ &  CSID\\\hline
+ 
+Consent & The consent the patient must provide during the medical appointment, according to the directives of the GDPR, for processing her/his data, which would then be involved in Clinical Studies if such consent is given. & \begin{itemize}
+        \vspace{-1em}
+        \item Consent Status: tells whether the patient has given the Consent for her/his data to be processed or not. (boolean)
+        \item Duration: the period of time for which the Consent provided by the patient is maintained. (date range)
+        \item Purpose: the reason why the patient is asked for Consent. (text)        
+    \end{itemize}
+ &  \begin{itemize}
+    \vspace{-1em}
+    \item Patient ID (from Patient)
+    \item CSID (from Clinical Study)
+ \end{itemize}
+    \\\hline
+
+Doctor & Medical employee of the RHO, responsible for performing medical examinations on patients, registering their data, and taking care of their medical treatment. & \begin{itemize}
+        \vspace{-1em}
+        \item ID: identifier of the Doctor. (text)
+        \item E-mail: the e-mail address of the Doctor. (text)
+        \item Name: the name of the Doctor. (text)
+        \item Password: the login hashed password of the Doctor. (text)
+        \item Phone Number: the phone number of the Doctor. (text)
+        \item Surname: the surname of the Doctor. (text)
+    \end{itemize}
+ &  ID\\\hline
+
+Group & The group to which each Sample can belong. & \begin{itemize}
+        \vspace{-1em}
+        \item Study Group ID: identifier of the Group to which the Sample belongs. (text)
+        \item Kind of Samples: the type of Sample collected, e.g., blood samples, tissues, genome type. (text)
+        \item Number of Samples: the number of samples that a Group contains. (integer)
+    \end{itemize}
+ &  Study Group ID\\\hline
+
+Location & The physical location in which each Sample is stored. & \begin{itemize}
+        \vspace{-1em}
+        \item Storage ID: identifier of the Location where the sample is stored. (text)
+        \item Capacity: the number of samples each Location can contain. (integer)
+        \item Kind: the type of sample storage Location, e.g., refrigerator and boxes. (text)
+        \item Room: the room where samples can be stored. (text)
+    \end{itemize}
+ &  Storage ID\\\hline
+
+Medical Appointment & The medical examination that a doctor performs on a patient. Thanks to it, the doctor can enter and/or update patient information and (if necessary) collect one or more biological samples for further analysis. & \begin{itemize}
+        \vspace{-1em}
+        \item MAID (Medical Appointment ID): identifier of the Medical Appointment. (text)
+        \item Date: the date on which the Medical Appointment has been performed. (date range)
+    \end{itemize}
+ &  MAID\\\hline
+
+Patient & Person who undergoes a medical examination at the RHO Institute to receive a diagnosis and (if necessary) a treatment for her/his oncological pathology. In addition, the patient should consent for the RHO's researchers to study his/her biological samples. & \begin{itemize}
+        \vspace{-1em}
+        \item Patient ID: identifier of the Patient. (serial)
+        \item Clinical History: a description of the clinical history (medical appointments, treatments) of the Patient. (text)
+        \item Date of Birth: the date of birth of the Patient. (date range)
+        \item Fiscal Code: the fiscal code of the Patient. (text)
+        \item Height: the height of the Patient. (float)
+        \item Name: the name of the Patient. (text)
+        \item Sex: the sex of the Patient. (text)
+        \item Status: identifies whether the Patient is sick or healthy. (boolean)
+        \item Surname: the surname of the Patient. (text)
+        \item Weight: the weight of the Patient. (float)
+    \end{itemize}
+ &  Patient ID\\\hline
+
+Research Personnel & Entity that groups all the RHO researchers (Clinical Engineers and Data Scientists) involved in research activities and analyses. & \begin{itemize}
+        \vspace{-1em}
+        \item ID: identifier of the Research Personnel member. (text)
+        \item E-mail: the e-mail address of the Research Personnel member. (text)
+        \item Name: the name of the Research Personnel member. (text)
+        \item Password: the log-in hashed password of the Research Personnel member. (text)
+        \item Phone Number: the phone number of the Research Personnel member. (text)
+        \item Role: identifies whether the researcher is a Clinical Engineer or a Data Scientist. (boolean)
+        \item Surname: the surname of the Research Personnel member. (text)
+    \end{itemize}
+ &  ID\\\hline
+
+Research Procedure & The statistical and/or biochemical methodology that Clinical Engineers and Data Scientists use to conduct a Clinical Study. & \begin{itemize}
+        \vspace{-1em}
+        \item Research ID: identifier of the Research Procedure. (text)
+        \item Description: a brief explanation of the objectives and the main features of the Research Procedure. (text)
+        \item Name: identifier of the Procedure adopted. (text)
+        \item Need for Anonymization: identifies whether the Research Procedure used has to be anonymized or not. (boolean)
+    \end{itemize}
+ &  Research ID\\\hline
+
+Research Team & A group of researchers, composed of Clinical Engineers and Data Scientists, that performs the analyses required by a Clinical Study. & \begin{itemize}
+        \vspace{-1em}
+        \item Name: identifier of the Research Team. (text)
+        \item Creator: the researcher who created the Research Team. (text)
+        \item Number of Members: the number of members of the Research Team. (integer)
+    \end{itemize}
+ &  Name\\\hline
+
+Results & The set of statistical and biochemical results obtained at the end of a Clinical Study. & \begin{itemize}
+        \vspace{-1em}
+        \item ICD-O Code: identifier of the Results obtained. (text)
+        \item Model Accuracy: the value of the accuracy metric that describes the performance of the statistical model used. (float)
+        \item Model Loss: the value of the loss metric for the statistical model used. (float)
+        \item Mutation: number of mutations discovered. (integer)
+        \item Putative copy-number alterations: a measure of genomic instability. (float)
+    \end{itemize}
+ &  \begin{itemize}
+    \vspace{-1em}
+    \item ICD-O Code
+    \item CSID (from Clinical Study)
+ \end{itemize}
+    \\\hline
+
+Sample & A biochemical sample, e.g., blood, tissue, or genome, that a doctor collects from a patient during a medical appointment and that will be analyzed in a Clinical Study together with its Group. & \begin{itemize}
+        \vspace{-1em}
+        \item UIGID (Unique Incrementally Generated ID): identifier of the Sample. (serial)
+        \item Availability Status: identifies whether the Sample is available or not. (boolean)
+        \item Type: the type of the Sample. (text)
+    \end{itemize}
+ &  UIGID\\\hline
+ 
+\end{longtable}
